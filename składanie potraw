@@ -1,0 +1,83 @@
+class Potrawa:
+    def skladniki(self):
+        pass
+
+    def wyswietl_kroki(self):
+        pass
+
+
+class Kanapka(Potrawa):
+    def skladniki(self):
+        return ['kanapka', 'chleb', 'masło', 'ogórek', 'pomidor', 'szynka', 'przyprawy']
+
+    def wyswietl_kroki(self):
+        print("Kroki wykonania dla kanapki.")
+        print("1. Pokrój chleb.")
+        print("2. Pokrój w plasterki ogórka oraz pomidora.")
+        print("3. Posmaruj kromkę chleba masłem.")
+        print("4. Połóż na posmarowaną kromkę ser oraz szynkę.")
+        print("5. Półóż pokrojoneogo ogórka oraz pomidora na kanapkę.")
+        print("6. Dopraw ulubionymi przyprawami.")
+
+class Spaghetti_bolognese(Potrawa):
+    def skladniki(self):
+        return ['spaghetti bolognese', 'mięso mielone', 'makaron', 'pomidory z puszki', 'olej', 'woda', 'gotowa saszetka spaghetti bolognese']
+
+    def wyswietl_kroki(self):
+        print("Kroki wykonania dla spaghetti bolognese:")
+        print("1. Ugotuj makaron.")
+        print("2. Mięso podsmaż na patelni.")
+        print("3. Dodaj pomidory z puszki, dokładnie wszystko rozdrobnij i doprowadź do wrzenia.")
+        print("4. Dodaj pół szklanki wody oraz zawartość saszetki.")
+        print("5. Gotuj ok. 4-6 minut na małym ogniu, aż sos zrobi się idealnie gęsty. Podawaj z makaronem..")
+
+class Burger_vege(Potrawa):
+    def skladniki(self):
+        return ['burger vege', '1 ugotowany kalafior', '3 ugotowane ziemniaki', '1 duża cebula', 'garść świeżych ziół', '1 jajko', '3 łyżki bułki tartej i dodatkowo do panierowania', 'sól i pieprz']
+
+    def wyswietl_kroki(self):
+        print("Kroki wykonania dla burgera vege:")
+        print("1. Cebulę pokrój i zeszklij na oleju.")
+        print("2. Ziemniaki przeciśnij przez praskę.")
+        print("3. Kalafior zmiksuj, następnie wrzuć do miski razem z ziemniakami.")
+        print("4. Dodaj cebulkę, rozgnieciony ząbek czosnku i jajko.")
+        print("5. Dopraw solą i pieprzem, wymieszaj.")
+        print("6. Uformuj kotlety, obtocz je w bułce tartej i ułóż na blasze wyłożonej papierem do pieczenia..")
+        print("7. Piecz 30 minut w temperaturze 200 stopni.")
+        
+        
+class Menu:
+    def __init__(self):
+        self.potrawy = []
+
+    def dodaj_potrawe(self, potrawa):
+        self.potrawy.append(potrawa)
+
+    def wyswietl_menu(self):
+        print("Menu:")
+        for index, potrawa in enumerate(self.potrawy, start=1):
+            print(f"{index}. {potrawa.skladniki()[0]} ")
+
+    def wyswietl_kroki_wykonania(self, index):
+        if 0 <= index < len(self.potrawy):
+            potrawa = self.potrawy[index]
+            potrawa.wyswietl_kroki()
+        else:
+            print("Brak dania w menu")
+
+
+if __name__ == '__main__':
+    menu = Menu()
+
+    kanapka = Kanapka()
+    Spaghetti_bolognese = Spaghetti_bolognese()
+    Burger_vege = Burger_vege()
+
+    menu.dodaj_potrawe(kanapka)
+    menu.dodaj_potrawe(Spaghetti_bolognese)
+    menu.dodaj_potrawe(Burger_vege)
+
+    menu.wyswietl_menu()
+
+    numer_dania = int(input("Wybierz numer dania: "))
+    menu.wyswietl_kroki_wykonania(numer_dania - 1)
